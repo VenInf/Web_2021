@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: "sans-serif";
+}
+
+.content {
+    display: flex;
+    padding: 150px;
+}
+
+.userNameInputstyle {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input {
+    font-size: 18px;
+    padding: 15px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+input:focus {
+    outline: none;
+}
+
+#submitButton {
+    border: none;
+    background-color: white;
+    color: dimgray;
+    padding: 0px 28px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+label {
+    color: dimgray;
+    font-size: 18px;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: 60px;
+}

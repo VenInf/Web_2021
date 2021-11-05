@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tetris</title>
+        <link rel="stylesheet" href="css/game.css">
+        <script type="module" src="src/main.js"></script>
+        <script src="rendering/tableRecords.js"  defer></script>
+    </head>
+
+    <body>
+    <div style="display: flex;">
+        <div>
+            <div id="table" style="padding: 30px">
+                <p>Table of records</p>
+            </div>
+        </div>
+        <div id="coll" style="display: flex">
+            <div style="display: grid;">
+                <button id="aut">Back to login</button>
+                <button id="restart">Restart</button>
+                <canvas width="320" height="640" id="screen"></canvas>
+            </div>
+            <div id="infoBoard">
+                <div style="display: flex;justify-content: space-between;">
+                <div style="width: fit-content; padding: 15px">
+                    <p id="nameUsers"></p>
+                    <p id="score"></p>
+                    <p id="bestScore"></p>
+                </div>
+                <div style="display: grid;justify-content: end;padding: 30px">
+                    <canvas id="nextFig" width="128" height="128"></canvas>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
