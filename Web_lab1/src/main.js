@@ -1,3 +1,3 @@
-import {start} from "../rendering/entryPoint.js";
+import {start} from "./entryPoint.js";
 
 start();

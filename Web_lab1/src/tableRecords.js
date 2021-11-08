@@ -3,12 +3,11 @@ let usesersArr = JSON.parse(localStorage.getItem('name'));
 
 let tableSize = 10
 
-for(let i in usesersArr)
+for(let user in usesersArr)
 {
-    --tableSize
-    if (tableSize == 0)
+    if (tableSize-- == 0)
         break;
-    var tableText = document.createTextNode( `${usesersArr[i].name} : ${usesersArr[i].score}`);
+    var tableText = document.createTextNode( `${usesersArr[user].name} : ${usesersArr[user].score}`);
     var textTag = document.createElement("p");
     textTag.appendChild(tableText);
     var table = document.getElementById("table");

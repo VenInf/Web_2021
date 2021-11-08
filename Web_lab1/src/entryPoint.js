@@ -1,6 +1,6 @@
-import {GameMap} from "./gameMap.js";
+import {TetrisMap} from "./tetrisMap.js";
 
-import "./keyEvent.js"
+import "./keyEvents.js"
 
 let score = 0;
 let users = JSON.parse(localStorage.getItem("name"));
@@ -11,25 +11,19 @@ document.getElementById("bestScore").innerHTML = "Best score: " + users[users.le
 const minCanvas = document.getElementById("nextFig");
 const minContext = minCanvas.getContext('2d');
 
-
 const canvas = document.getElementById("screen");
 const context = canvas.getContext('2d');
-let animation = null;
+export let animation = null;
 let ticksInFrame = 30;
-let dificulty=5;
-
 
 let tick = 0;
-export let gameover = false;
-
-
 
 const nameFigure = ['I','S','T','Z','L','O','J'];
 const colors = ["dimgrey", "cyan", "purple", "yellow", "forestgreen", "red", "blue", "orange"];
 
-const figure = {
+const figures = {
     'I': {
-        bouns: [
+        matrix: [
             [0, 1, 0, 0],
             [0, 1, 0, 0],
             [0, 1, 0, 0],
@@ -39,7 +33,7 @@ const figure = {
         color: colors[1]
     },
     'J': {
-        bouns: [
+        matrix: [
             [0, 2, 0],
             [0, 2, 0],
             [2, 2, 0],
@@ -48,7 +42,7 @@ const figure = {
         color: colors[2]
     },
     'O': {
-        bouns: [
+        matrix: [
             [3, 3],
             [3, 3]
         ],
@@ -56,7 +50,7 @@ const figure = {
         color: colors[3]
     },
     'L': {
-        bouns: [
+        matrix: [
             [0, 4, 0],
             [0, 4, 0],
             [0, 4, 4],
@@ -65,7 +59,7 @@ const figure = {
         color: colors[4]
     },
     'Z': {
-        bouns: [
+        matrix: [
             [0, 5, 5],
             [5, 5, 0],
             [0, 0, 0],
@@ -74,7 +68,7 @@ const figure = {
         color: colors[5]
     },
     'T': {
-        bouns: [
+        matrix: [
             [0, 0, 0],
             [6, 6, 6],
             [0, 6, 0],
@@ -83,7 +77,7 @@ const figure = {
         color: colors[6]
     },
     'S': {
-        bouns: [
+        matrix: [
             [7, 7, 0],
             [0, 7, 7],
             [0, 0, 0],
@@ -93,7 +87,7 @@ const figure = {
     }
 };
 
-export const gameScreen = new GameMap(context, colors);
+export const gameScreen = new TetrisMap(context, colors);
 export let currentFig = {};
 let nextFig ={};
 let queueFig =[];
@@ -101,9 +95,9 @@ let queueFig =[];
 export function start()
 {
     generateFigureQueue();
-    currentFig = JSON.parse(JSON.stringify(figure[queueFig.pop()]));
+    currentFig = JSON.parse(JSON.stringify(figures[queueFig.pop()]));
     fillNextFigCanvas();
-    gameLoop();
+    mainLoop();
 }
 
 
@@ -122,17 +116,6 @@ function generateFigureQueue()
     }
 }
 
-function changeTicksInFrame()
-{
-    ++score;
-    if(score>dificulty)
-    {
-        if (ticksInFrame > 3)
-            ticksInFrame -= 3;
-        dificulty += 5;
-    }
-}
-
 function clearCanvas()
 {
     minContext.fillStyle = colors[0];
@@ -141,12 +124,12 @@ function clearCanvas()
 
 function fillNextFigCanvas()
 {
-    nextFig = figure[queueFig[queueFig.length - 1]];
-    for (let x = 0; x < nextFig.bouns.length; ++x)
+    nextFig = figures[queueFig[queueFig.length - 1]];
+    for (let x = 0; x < nextFig.matrix.length; ++x)
     {
-        for (let y = 0; y < nextFig.bouns[x].length; ++y)
+        for (let y = 0; y < nextFig.matrix[x].length; ++y)
         {
-            if (nextFig.bouns[y][x])
+            if (nextFig.matrix[y][x])
             {
                 minContext.fillStyle = nextFig.color;
                 minContext.fillRect(x * 32, y * 32, 32 - 1, 32 - 1);
@@ -159,7 +142,7 @@ function fillNextFigCanvas()
 function gameOver()
 {
     cancelAnimationFrame(animation);
-    gameover = true;
+    animation = null;
     context.textAlign = 'center';
     context.fillStyle = 'black';
 
@@ -191,26 +174,27 @@ function bestScore()
     }
 }
 
-function isFiledLine()
+function clearRow(row)
 {
-    for(let row = gameScreen.tetrisMap.length -1;  row >= 0;)
+    for (let i = row; i >= 0; i--)
     {
-        if(gameScreen.tetrisMap[row].every(elem => elem !== 0))
+        for (let j = 0; j < gameScreen.tetrisMap[i].length; j++)
         {
-            changeTicksInFrame();
+            gameScreen.tetrisMap[i][j] = gameScreen.tetrisMap[i-1][j];
+        }
+    }
+}
+
+function filledLineCheck()
+{
+    for(let row = gameScreen.tetrisMap.length -1;  row >= 0; row--)
+    {
+        let rowIsFilled = gameScreen.tetrisMap[row].every(elem => elem !== 0);
+        if(rowIsFilled)
+        {
             bestScore();
             document.getElementById("score").innerHTML = "Score: " + score;
-            for (let i = row; i >= 0; i--)
-            {
-                for (let j = 0; j < gameScreen.tetrisMap[i].length; j++)
-                {
-                    gameScreen.tetrisMap[i][j] = gameScreen.tetrisMap[i-1][j];
-                }
-            }
-        }
-        else
-        {
-            row--;
+            clearRow(row);
         }
     }
 }
@@ -224,14 +208,20 @@ function fallingFigures()
 
 function giveFigure()
 {
-    return JSON.parse(JSON.stringify(figure[queueFig.pop()]));
+    return JSON.parse(JSON.stringify(figures[queueFig.pop()]));
 }
 
 document.getElementById("restart").addEventListener("click", restartGame);
-
-export function gameLoop()
+function restartGame()
 {
-    animation = requestAnimationFrame(gameLoop);
+    cancelAnimationFrame(animation);
+    window.location.reload();
+}
+
+
+export function mainLoop()
+{
+    animation = requestAnimationFrame(mainLoop);
 
     ++tick;
     if(tick > ticksInFrame)
@@ -245,7 +235,7 @@ export function gameLoop()
         else
         {
             gameScreen.addFigure(currentFig);
-            isFiledLine();
+            filledLineCheck();
             gameScreen.refreshMap();
             gameOverCheck();
 
@@ -259,11 +249,3 @@ export function gameLoop()
 }
 
 document.getElementById("aut").addEventListener("click", ()=>{history.go(-1)});
-
-
-function restartGame()
-{
-    cancelAnimationFrame(animation);
-    window.location.reload();
-}
-

@@ -14,13 +14,11 @@ function authorization()
             localStorage.removeItem('name');
             localStorage.setItem('name', JSON.stringify(parsed));
         }
-
         else
         {
             localStorage.setItem('name', JSON.stringify(userName));
         }
-
-        window.open('game','_self');
+        window.open('tetris','_self');
     }
 }
 

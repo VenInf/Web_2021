@@ -1,4 +1,4 @@
-export class GameMap
+export class TetrisMap
 {
 
     constructor(context, colors)
@@ -20,15 +20,15 @@ export class GameMap
     addFigure(figure)
     {
 
-        for(let i_y = 0; i_y<figure.bouns.length; i_y++)
+        for(let i_y = 0; i_y<figure.matrix.length; i_y++)
         {
-            for(let i_x = 0; i_x<figure.bouns[0].length;i_x++)
+            for(let i_x = 0; i_x<figure.matrix[0].length;i_x++)
             {
-                if(figure.bouns[i_y][i_x])
+                if(figure.matrix[i_y][i_x])
                 {
                     let y = figure.cords.y+i_y;
                     let x = figure.cords.x+i_x;
-                    this.tetrisMap[y][x] = figure.bouns[i_y][i_x];
+                    this.tetrisMap[y][x] = figure.matrix[i_y][i_x];
                 }
             }
         }
@@ -36,11 +36,11 @@ export class GameMap
 
     draw(figure)
     {
-        for(let i_y = 0; i_y<figure.bouns.length; i_y++)
+        for(let i_y = 0; i_y<figure.matrix.length; i_y++)
         {
-            for (let i_x = 0; i_x < figure.bouns[0].length; i_x++)
+            for (let i_x = 0; i_x < figure.matrix[0].length; i_x++)
             {
-                if (figure.bouns[i_y][i_x])
+                if (figure.matrix[i_y][i_x])
                 {
                     let y = figure.cords.y + i_y;
                     let x = figure.cords.x + i_x;
@@ -54,14 +54,14 @@ export class GameMap
 
     canPlace(currentFig)
     {
-        for(let i_x = 0; i_x<currentFig.bouns.length; i_x++)
+        for(let i_x = 0; i_x<currentFig.matrix.length; i_x++)
         {
-            for (let i_y = 0; i_y < currentFig.bouns[0].length; i_y++)
+            for (let i_y = 0; i_y < currentFig.matrix[0].length; i_y++)
             {
                 let y = currentFig.cords.y + i_y;
                 let x = currentFig.cords.x + i_x;
 
-                if (currentFig.bouns[i_y][i_x])
+                if (currentFig.matrix[i_y][i_x])
                 {
                     if (x < 0 || y+1  >= this.tetrisMap.length-1 || x >= this.tetrisMap[0].length || this.tetrisMap[y+1][x] )
                     {
@@ -87,11 +87,11 @@ export class GameMap
 
     deleteOldFig(currentFig)
     {
-        for(let i_y = 0; i_y<currentFig.bouns.length; i_y++)
+        for(let i_y = 0; i_y<currentFig.matrix.length; i_y++)
         {
-            for(let i_x = 0; i_x<currentFig.bouns[0].length;i_x++)
+            for(let i_x = 0; i_x<currentFig.matrix[0].length;i_x++)
             {
-                if(currentFig.bouns[i_y][i_x])
+                if(currentFig.matrix[i_y][i_x])
                 {
                     let y =currentFig.cords.y+i_y;
                     let x =currentFig.cords.x+i_x;
