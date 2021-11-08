@@ -199,7 +199,7 @@ function filledLineCheck()
     }
 }
 
-function fallingFigures()
+function fallFigures()
 {
     gameScreen.deleteOldFig(currentFig);
     currentFig.cords.y += 1;
@@ -211,7 +211,7 @@ function giveFigure()
     return JSON.parse(JSON.stringify(figures[queueFig.pop()]));
 }
 
-document.getElementById("restart").addEventListener("click", restartGame);
+document.getElementById("restartButton").addEventListener("click", restartGame);
 function restartGame()
 {
     cancelAnimationFrame(animation);
@@ -230,7 +230,7 @@ export function mainLoop()
 
         if(gameScreen.canPlace(currentFig))
         {
-            fallingFigures();
+            fallFigures();
         }
         else
         {
@@ -248,4 +248,4 @@ export function mainLoop()
 
 }
 
-document.getElementById("aut").addEventListener("click", ()=>{history.go(-1)});
+document.getElementById("backButton").addEventListener("click", ()=>{history.go(-1)});
