@@ -1,0 +1,22 @@
+{
+    "books": [
+      {
+        "id": 1,
+        "title": "Alice's Adventures in Wonderland",
+        "author":"Lewis Carroll",
+        "avaliable": "true",
+        "returnDate": "",
+        "reader": "",
+        "publicDate": ""
+      },
+      {
+        "id": 2,
+        "title": "Through the Looking-Glass",
+        "author":"Lewis Carroll",
+        "avaliable": "false",
+        "returnDate": "2021-11-09T17:35:25.494Z",
+        "reader": "Alisa",
+        "publicDate": ""
+      }
+    ]
+}
