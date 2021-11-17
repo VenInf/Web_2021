@@ -18,8 +18,6 @@ function maxFreeID()
     booksFromFile.books.forEach(book => {
         if (id == book.id)
             id += 1;
-        else
-            break;
     });
     return id;    
 }
@@ -39,9 +37,19 @@ function addBook(req)
     });
 }
 
+function removeBook (id) {
+    for (const key in booksFromFile.books) {
+        if (booksFromFile.books[key].id === parseInt(id)) {
+            booksFromFile.books.splice(key, 1);
+            break;
+        }
+    }
+}
+
 module.exports = 
 {
     getBook,
     addBook,
+    removeBook,
     booksFromFile
 }

@@ -13,7 +13,7 @@ block main
                                 a(href=`books/?id=${book.id}`)= val
     br
 
-    div(id="add_book").w3-container
+    div.w3-container
         form(method="POST" action="/books?_method=PUT").w3-row-padding
             .w3-quarter
                 input.w3-input#addTitle(type="text" name="title" placeholder='Title' required)

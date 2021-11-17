@@ -15,10 +15,7 @@ router.get('/', (req, res) => {
     }
 })
 
-
-// REST API
 router.put('/', (req, res) => {
-    console.log(req.body);
     if (req.body.title !== undefined) {
       library.addBook(req);
     }
@@ -36,11 +33,11 @@ router.put('/', (req, res) => {
 // res.redirect(`/books/?id=${req.body.id}`);
 // });
 
-// router.delete('/', (req, res) => {
-// if (req.body.id !== undefined) {
-//     library.removeBook(req.body.id);
-// }
-// res.redirect('/books');
-// });
+router.delete('/', (req, res) => {
+if (req.body.id !== undefined) {
+    library.removeBook(req.body.id);
+}
+res.redirect('/books');
+});
 
 module.exports = router;
