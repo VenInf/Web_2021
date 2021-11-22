@@ -4,22 +4,66 @@ block main
     h1.w3-panel Book
 
     table.w3-container.w3-table.w3-hoverable
-        tr
-            td Title: #{book.title}
-        tr
-            td Author: #{book.author}
-        tr
-            td Publicatin date: #{book.publicDate}
-        tr
-            td Reader: #{book.reader}
-        tr
-            td Return due: #{book.returnDate}
-        tr
-            td Is avaliable: #{book.avaliable}
+        if (book.title !== '')
+            tr
+                td Title: #{book.title}
+        if (book.author !== '')    
+            tr
+                td Author: #{book.author}
+        if (book.publicDate !== '')    
+            tr
+                td Publicatin date: #{book.publicDate}
+        if (book.returnDate !== '')
+            tr
+                td Return due: #{book.returnDate}
+        if (book.avaliable === 'true')
+            tr
+                td The book is avaliable
+        else
+            tr
+                td The book is NOT avaliable
 
-    a(href=`/books`).w3-padding
-        button.w3-button.w3-large.w3-black#back Back
-
-    form(action='/books?_method=DELETE' method='POST').w3-padding
+    form(action='/books?_method=DELETE' method='POST')
         input(type='hidden' name='id' value=book.id)
         button.w3-button.w3-large.w3-red(type="submit") Delete
+
+    button(type='button', onclick="document.getElementById('readerShowPopup').style.display='block'").w3-button.w3-large.w3-black#reader Reader
+    
+    br
+
+    a(href=`/books`)
+        button.w3-button.w3-large.w3-black#back Back
+
+    if (book.avaliable === 'true')
+        br
+        button(type="button", onclick="document.getElementById('readerAskPopup').style.display='block'").w3-button.w3-large.w3-black Take
+    else
+        form(action='/books' method='POST')
+            input(type='hidden' name='id' value=book.id)
+            input(type='hidden' name='isEdit' value='false')
+            button.w3-button.w3-large.w3-black(type="submit") Return
+
+    .w3-modal.w3-animate-opacity#readerShowPopup
+        .w3-modal-content.w3-white
+            header.w3-container
+                button(type='button', onclick="document.getElementById('readerShowPopup').style.display='none'").w3-btn.w3-display-topright.w3-black &times;
+                h3 Reader
+            div.w3-container
+                if (book.reader === '')
+                    h3 There is no reader right now.
+                else
+                    h3 Reader is #{book.reader}.
+
+    .w3-modal.w3-animate-opacity#readerAskPopup
+        .w3-modal-content.w3-white
+            header.w3-container
+                button(type='button', onclick="document.getElementById('readerAskPopup').style.display='none'").w3-btn.w3-display-topright.w3-black &times;
+                h3 Please, enter your name.
+            div.w3-container
+                form(action='/books' method='POST')
+                    input(type='hidden' name='id' value=book.id)
+                    input(type='hidden' name='isEdit' value='false')
+                    input.w3-input.w3-border.w3-margin(name='reader' placeholder='Name Example' value=book.reader)
+                    br
+                    br
+                    button.w3-button.w3-black.w3-display-bottomright(type="submit")#submitReaderButton +

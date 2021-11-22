@@ -10,7 +10,9 @@ app.use(express.static(__dirname+ '/public'));
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
-app.use('/', require('./src/library.js'))
+
+app.use('/', require('./src/root.js'))
+app.use('/library', require('./src/library.js'))
 app.use('/books', require('./src/books.js'))
 
 var server = app.listen(8081);

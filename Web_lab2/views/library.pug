@@ -1,16 +1,19 @@
 extends layout
 
+block append scripts
+    script(defer src="scripts/books_ajax.js")
+
 block main
     h1.w3-panel Book shelf
     
-    table.w3-container.w3-table.w3-hoverable
-        each book in books
-            tr
-                each val, key in book
-                    if (key !== 'id')
-                        td
-                            if (key === 'title')
-                                a(href=`books/?id=${book.id}`)= val
+    .w3-section#booksTable
+        include books
+
+    div.w3-padding
+        input#avaliableCheck(type="checkbox")
+        label(for="avaliableCheck")  Avaliable books only
+        br
+        button.w3-button.w3-large.w3-black#filterButton Filter
     br
 
     div.w3-container
@@ -23,3 +26,4 @@ block main
                 input.w3-input#addDate(type="text" name="publicDate" placeholder='Publication date' required)
             .w3-quarter
                 button.w3-button.w3-large.w3-black#addBook(type="submit") +
+
