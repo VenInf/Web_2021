@@ -10,8 +10,9 @@ app.use(express.static(__dirname+ '/images'));
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
-app.use('/', require('./src/root.js'))
+app.use('/', require('./src/mainPage.js'))
 app.use('/paintings', require('./src/paintings.js'))
+app.use('/participants', require('./src/participants.js'))
 
 var server = app.listen(8080);
 

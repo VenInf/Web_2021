@@ -9,4 +9,6 @@ block main
                 td
                     each val, key in painting
                         if (key === 'title')
-                            a(href=`paintings/?id=${painting.id}`)= val
+                            - var paintingTitle = val
+                        if (key === 'active' && val == "true")
+                            a(href=`paintings/?id=${painting.id}`)= paintingTitle

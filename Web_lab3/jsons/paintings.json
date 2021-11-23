@@ -8,7 +8,8 @@
         "image": "francis_bacon_noname.jpeg",
         "startPrice": "1000",
         "minBetStep": "100",
-        "maxBetStep": "1000"
+        "maxBetStep": "1000",
+        "active" : "true"
       },
       {
         "id": 2,
@@ -18,7 +19,8 @@
         "image": "devyatyi_val.jpeg",
         "startPrice": "2000",
         "minBetStep": "200",
-        "maxBetStep": "2000"
+        "maxBetStep": "2000",
+        "active" : "true"
       }
     ]
 }

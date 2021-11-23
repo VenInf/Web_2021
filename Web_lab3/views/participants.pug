@@ -1,0 +1,12 @@
+extends layout
+
+block main
+    h1 Participants
+
+    table
+        each participant in participants
+            tr
+                td
+                    each val, key in participant
+                        if (key === 'name')
+                            h3= val

@@ -71,6 +71,24 @@ function editPainting (id, req)
     });
 }
 
+function switchActivityPainting (id)
+{
+    paintingsFromFile.paintings.forEach(painting => {
+        if (painting.id === parseInt(id))
+        {
+            if (painting.active === 'true')
+            {
+                painting.active = 'false';
+            }
+            else
+            {
+                painting.active = 'true';
+            }
+        }
+    });
+}
+
+
 
 module.exports = 
 {
@@ -78,5 +96,6 @@ module.exports =
     addPainting,
     removePainting,
     editPainting,
+    switchActivityPainting,
     paintingsFromFile
 }
