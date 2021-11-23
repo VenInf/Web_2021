@@ -22,17 +22,17 @@ block main
         else
             tr
                 td The book is NOT avaliable
+    br
 
     form(action='/books?_method=DELETE' method='POST')
         input(type='hidden' name='id' value=book.id)
         button.w3-button.w3-large.w3-red(type="submit") Delete
 
     button(type='button', onclick="document.getElementById('readerShowPopup').style.display='block'").w3-button.w3-large.w3-black#reader Reader
-    
+
     br
 
-    a(href=`/books`)
-        button.w3-button.w3-large.w3-black#back Back
+    button(type='button', onclick="document.getElementById('bookUpdatePopup').style.display='block'").w3-button.w3-large.w3-black#reader Update book info
 
     if (book.avaliable === 'true')
         br
@@ -42,6 +42,10 @@ block main
             input(type='hidden' name='id' value=book.id)
             input(type='hidden' name='isEdit' value='false')
             button.w3-button.w3-large.w3-black(type="submit") Return
+
+    br
+    a(href=`/books`)
+        button.w3-button.w3-large.w3-black#back Back
 
     .w3-modal.w3-animate-opacity#readerShowPopup
         .w3-modal-content.w3-white
@@ -58,12 +62,28 @@ block main
         .w3-modal-content.w3-white
             header.w3-container
                 button(type='button', onclick="document.getElementById('readerAskPopup').style.display='none'").w3-btn.w3-display-topright.w3-black &times;
-                h3 Please, enter your name.
+                h3 Please, enter your name
             div.w3-container
                 form(action='/books' method='POST')
                     input(type='hidden' name='id' value=book.id)
                     input(type='hidden' name='isEdit' value='false')
-                    input.w3-input.w3-border.w3-margin(name='reader' placeholder='Name Example' value=book.reader)
+                    input.w3-input.w3-border.w3-margin(name='reader' placeholder='Your name' value=book.reader)
+                    br
+                    br
+                    button.w3-button.w3-black.w3-display-bottomright(type="submit")#submitReaderButton +
+
+    .w3-modal.w3-animate-opacity#bookUpdatePopup
+        .w3-modal-content.w3-white
+            header.w3-container
+                button(type='button', onclick="document.getElementById('bookUpdatePopup').style.display='none'").w3-btn.w3-display-topright.w3-black &times;
+                h3 Please, enter new book information
+            div.w3-container
+                form(action='/books' method='POST')
+                    input(type='hidden' name='id' value=book.id)
+                    input(type='hidden' name='isEdit' value='true')
+                    input.w3-input.w3-border.w3-margin(name='title' placeholder="Book's title" value=book.title)
+                    input.w3-input.w3-border.w3-margin(name='author' placeholder="Author's name" value=book.author)
+                    input.w3-input.w3-border.w3-margin(name='publicDate' placeholder='Publication date' value=book.publicDate)
                     br
                     br
                     button.w3-button.w3-black.w3-display-bottomright(type="submit")#submitReaderButton +

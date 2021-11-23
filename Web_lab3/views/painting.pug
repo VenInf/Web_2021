@@ -1,0 +1,10 @@
+extends layout
+
+block main
+    h1 Painting
+    h2 Title: #{painting.title}
+    h2 Author: #{painting.author} 
+    h3 Description: #{painting.description} 
+    img(src=painting.image)
+    h3 Start price: #{painting.startPrice} 
+    

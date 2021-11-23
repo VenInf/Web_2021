@@ -1,0 +1,12 @@
+extends layout
+
+block main
+    h1 Painting shelf
+
+    table
+        each painting in paintings
+            tr
+                td
+                    each val, key in painting
+                        if (key === 'title')
+                            a(href=`paintings/?id=${painting.id}`)= val

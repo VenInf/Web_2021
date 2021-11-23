@@ -24,7 +24,7 @@ router.put('/', (req, res) => {
   });
   
 router.post('/', (req, res) => {
-    if (req.body.isEdit === true)
+    if (req.body.isEdit === "true")
     {
         libFunc.editBook(req.body.id, req);
     } 
@@ -38,9 +38,9 @@ router.post('/', (req, res) => {
 router.delete('/', (req, res) => {
     if (req.body.id !== undefined)
     {
-        libFunc.removeBook(req.body.id, req.book.reader);
+        libFunc.removeBook(req.body.id);
     }
-    res.redirect('/books');
+    res.redirect('/library');
 });
 
 module.exports = router;
