@@ -1,0 +1,26 @@
+[
+  {
+    "id":0,
+    "distribution":"normal",
+    "max":100,
+    "price":100,
+    "stPrice":210,
+    "inTrade": 10
+  },
+  {
+    "id":1,
+    "distribution":"even",
+    "max":50,
+    "price":2000,
+    "stPrice":2010,
+    "inTrade": 10
+  },
+  {
+    "id": 2,
+    "distribution": "even",
+    "max": 200,
+    "price": 210,
+    "stPrice": 120,
+    "inTrade": 20
+  }
+]

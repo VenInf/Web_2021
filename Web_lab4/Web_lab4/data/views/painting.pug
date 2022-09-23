@@ -1,0 +1,39 @@
+extends layout
+
+block main
+    h1 Painting
+    h2 Title: #{painting.title}
+    h2 Author: #{painting.author} 
+    h3 Description: #{painting.description} 
+    h3 Start price: #{painting.startPrice} 
+
+    img#image(src=painting.image)
+
+    script(src="/public/js/painting.js")
+    script. 
+        var localPainting = !{JSON.stringify(painting)};
+    
+    br
+    a(href="/paintings")
+        button#backButton Back
+
+    button#activateButton Activate
+    button#deactivateButton Deactivate
+
+    button#editPaintingButton Edit
+
+    div#editPaintingBlock 
+        form#editPainting
+            input(type='hidden' name='id' value=painting.id)
+            input(type='hidden' name='edit' value='true')
+            input(name='title' placeHolder="Title" value=painting.title)
+            input(name='author' placeHolder="Author" value=painting.author)
+            input(name='description' placeHolder="Description" value=painting.description)
+            input(name='startPrice' placeHolder="Starting price" value=painting.startPrice)
+            input(name='minBetStep' placeHolder="Minimal bet step" value=painting.minBetStep)
+            input(name='maxBetStep' placeHolder="Maximal bet step" value=painting.maxBetStep)
+
+            button(type="submit")#submitEditButton +
+
+    button#showImageButton Show image
+    button#hideImageButton Hide image

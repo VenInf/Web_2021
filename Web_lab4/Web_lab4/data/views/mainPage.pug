@@ -1,0 +1,18 @@
+extends layout
+
+block main
+    script(src="/public/js/mainPage.js")
+    script. 
+        var sessionStorageData = !{JSON.stringify(sessionStorageData)};
+
+    h1 Main page
+    a(href=`paintings/`) Paintings
+    br
+    a(href=`participants/`) Participants
+    br
+    a(href=`auctionSettings/`) Auction settings
+    br
+    a(href=`auction/`) Auction
+    br
+    a(href="/")
+        button#backButton Back

@@ -1,0 +1,13 @@
+extends layout
+
+block main
+    script(src="/public/js/authorization.js")
+    h1= 'Autorisation' 
+
+    div#autorisationForm 
+        form#autorisation
+            input(type='hidden' name='autorisation' value='true')
+            input(name='name' placeHolder="Name")
+
+            button(type="submit")#submitAuthorizationButton +
+    

@@ -1,0 +1,48 @@
+extends layout
+
+block main
+    h1 Participants
+    script(src="/public/js/participants.js")
+    table
+        each participant in participants
+            - var notAdmin = true
+            tr
+                td
+                    each val, key in participant
+                        if (key === 'id' && val === 0)
+                            - notAdmin = false
+                        if (key === 'name' && notAdmin == true)
+                            h4= val
+                        if (key === 'balance' && notAdmin == true)
+                            h4= `Balance is ${val}`
+
+
+    a(href="/mainPage")
+        button#backButton Back
+    
+    button#addParticipantButton Add
+    button#deleteParticipantButton Delete
+    button#changeParticipantBalanceButton Change balance
+    
+    div#addParticipantBlock 
+        form#addParticipant
+            input(type='hidden' name='add' value='true')
+            input(name='name' placeHolder="Name")
+
+            button(type="submit")#submitParticipantButton +
+    
+
+    div#deleteParticipantBlock 
+        form#deleteParticipant
+            input(type='hidden' name='delete' value='true')
+            input(name='name' placeHolder="Name")
+
+            button(type="submit")#submitDeleteParticipantButton +
+
+    div#changeParticipantBalanceBlock 
+        form#changeParticipantBalance
+            input(type='hidden' name='change_balance' value='true')
+            input(name='name' placeHolder="Name")
+            input(name='balance' placeHolder="Balance")
+
+            button(type="submit")#submitchangeParticipantBalanceButton +

@@ -1,0 +1,41 @@
+extends layout
+
+block main
+    script(src="/public/js/auctionSettings.js")
+
+    h1 Auction settings
+    h3= `Date and time: ${auction.dateTime}`
+    h3= `Pause: ${auction.pause}`
+    h3= `Time left: ${auction.timeLeft}`
+
+    br
+    button#changeDateTimeButton Change date and time
+    br
+    button#changePauseButton Change pause
+    br
+    button#changeTimeLeftButton Change time left
+    
+    br
+    a(href="/mainPage")
+        button#backButton Back
+
+    div#changeDateTimeBlock 
+        form#changeDateTime
+            input(type='hidden' name='change_date_time' value='true')
+            input(name='dateTime' type="datetime-local" placeHolder="Date Type")
+
+            button(type="submit")#submitDateTimeButton +
+
+    div#changePauseBlock 
+        form#changePause
+            input(type='hidden' name='change_pause' value='true')
+            input(name='pause' placeHolder="Pause")
+
+            button(type="submit")#submitPauseButton +
+    
+    div#changeTimeLeftBlock 
+        form#changeTimeLeft
+            input(type='hidden' name='change_time_left' value='true')
+            input(name='timeLeft' placeHolder="Time")
+
+            button(type="submit")#submitTimeLeftButton +

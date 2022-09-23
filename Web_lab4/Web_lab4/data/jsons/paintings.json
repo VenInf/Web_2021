@@ -1,0 +1,26 @@
+{
+    "paintings": [
+      {
+        "id": 1,
+        "title": "Noname",
+        "author": "Francis Bacon",
+        "description":"Horrifying picture",
+        "image": "francis_bacon_noname.jpeg",
+        "startPrice": "1000",
+        "minBetStep": "100",
+        "maxBetStep": "10000",
+        "active" : "true"
+      },
+      {
+        "id": 2,
+        "title": "Devyatyi val",
+        "author": "Aivazovsky Ivan",
+        "description":"Beautiful canvas with some waves on it",
+        "image": "devyatyi_val.jpeg",
+        "startPrice": "2000",
+        "minBetStep": "200",
+        "maxBetStep": "20000",
+        "active" : "true"
+      }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "participants": [
+      {
+        "id": 0,
+        "name": "admin",
+        "balance": 10000000000000,
+        "paintings": []
+      },
+      {
+        "id": 1,
+        "name": "Very wealthy guy",
+        "balance": 1000,
+        "paintings": []
+      },
+      {
+        "id": 2,
+        "name": "Random human",
+        "balance": 200000,
+        "paintings": []
+      }
+    ]
+}

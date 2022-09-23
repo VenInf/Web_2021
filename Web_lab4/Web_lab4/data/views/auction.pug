@@ -1,0 +1,56 @@
+extends layout
+
+block main
+    script(src="/public/js/socket.io.js")
+    script(src="/public/js/auction.js")
+    
+    h1 Auction
+
+    table#informationTable
+        tr
+            td Time before auction
+            td#timeCell
+
+        tr
+            td Your balance
+            td#balanceCell
+        tr
+            td Your paintings
+            td#paintingsNamesCell
+        tr
+            th - 
+        tr
+            td Paintings title
+            td#titleCell
+        tr
+            td Paintings price
+            td#priceCell 
+        
+        tr
+            td Minimal bet step
+            td#minBetStepCell
+        tr
+            td Maximal bet step
+            td#maxBetStepCell
+        tr
+            th -
+        tr
+            td Current price
+            td#currentPriceCell
+        tr
+            td Current winner
+            td#currentWinnerCell
+        
+
+    h4 Betting
+    div#bettingCell
+    
+    div#makeBetBlock 
+        form#makeBet
+            input(type='hidden' name='id' value= '')#betID
+            input(name='bet' placeHolder="Your bet")
+
+            button(type="button")#submitBetButton +
+
+    a(href="/mainPage")
+        button#backButton Back

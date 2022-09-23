@@ -1,0 +1,22 @@
+[
+  {
+    "id":1,
+    "name":"Broker",
+    "money":1000000,
+    "stocks": [0, 20, 30],
+    "onTradeStocks": [0, 0, 0],
+    "price": [0, 2000, 3000],
+    "onTradePrice": [0, 0, 0],
+    "startMoney": 1000000
+  },
+  {
+    "id":2,
+    "name":"Random guy",
+    "money":5000000,
+    "stocks": [0, 0, 0],
+    "onTradeStocks": [0, 0, 0],
+    "price": [0, 0, 0],
+    "onTradePrice": [0, 0, 0],
+    "startMoney": 5000000
+  }
+]
